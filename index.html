@@ -16,6 +16,7 @@
 <meta property="og:url" content="https://coderstudiosdevelopers-coder.github.io/coderstudios/">
 <meta name="twitter:card" content="summary">
 
+<link rel="preconnect" href="https://play-lh.googleusercontent.com" crossorigin>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563EB'/><text x='16' y='23' font-size='19' font-family='system-ui,sans-serif' font-weight='800' fill='white' text-anchor='middle'>C</text></svg>">
 
 <style>
@@ -124,11 +125,14 @@
   @media(max-width:600px){.app{flex-direction:column;gap:18px;padding:22px}}
 
   .icon{
+    position:relative;overflow:hidden;
     width:72px;height:72px;border-radius:17px;flex-shrink:0;
     display:grid;place-items:center;
     box-shadow:0 2px 8px rgba(15,23,42,.12), inset 0 1px 0 rgba(255,255,255,.28);
   }
   .icon svg{width:38px;height:38px}
+  /* 실제 스토어 아이콘. 불러오지 못하면 뒤에 있는 SVG가 대신 보입니다. */
+  .icon-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
   .ic-memo   {background:linear-gradient(160deg,#3B82F6,#1D4ED8)}
   .ic-report {background:linear-gradient(160deg,#F87171,#DC2626)}
   .ic-qr     {background:linear-gradient(160deg,#64748B,#1E293B)}
@@ -260,6 +264,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h5"/><path d="M13.5 16.5l1.7 1.7L19 14.5"/>
           </svg>
+          <img class="icon-img" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"
+               src="https://play-lh.googleusercontent.com/-3wDwneYyRCDmo61E9nGfNxLf6RLakxA0YsUCTPB6joB_Evjkv-G8jgGp7QYIDTFqHF_T7YOCRmUjGgSw0e5=s192">
         </div>
         <div class="app-body">
           <div class="app-title">
@@ -289,6 +295,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 11v2a1 1 0 0 0 1 1h2l6 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/>
           </svg>
+          <img class="icon-img" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"
+               src="https://play-lh.googleusercontent.com/r-BW57QbeQZnNhlBvLUutiRaYXjKgRPnYlOIpXQcZKlYAtpuTKkqokl6VbQaBj_o00D-L5rK3DkLXj9LvbSmFU4=s192">
         </div>
         <div class="app-body">
           <div class="app-title">
@@ -319,6 +327,8 @@
             <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
             <rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14v3M17 20h4"/>
           </svg>
+          <img class="icon-img" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"
+               src="https://play-lh.googleusercontent.com/3tHIe0w9Jih2VCfqikHe5q8TcFEfYmqdHays8uRJwLQI-Y7fjPudHi30l3I9ph7mv3TE_s79KEOhOltoP55Z=s192">
         </div>
         <div class="app-body">
           <div class="app-title">
@@ -349,6 +359,8 @@
             <circle cx="6.5" cy="10" r="2"/><circle cx="10" cy="6" r="2"/><circle cx="14" cy="6" r="2"/><circle cx="17.5" cy="10" r="2"/>
             <path d="M12 12.5c-3 0-5 2.2-5 4.4 0 2 1.6 3.1 5 3.1s5-1.1 5-3.1c0-2.2-2-4.4-5-4.4z"/>
           </svg>
+          <img class="icon-img" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"
+               src="https://play-lh.googleusercontent.com/dM4kc9OIy81XdA34805pvedqg8uQL5PT6mBh-8_r4xOSzt7BxFihD6exuwSY1EPFzWq79Iqgt3jZ966mmme9=s192">
         </div>
         <div class="app-body">
           <div class="app-title">
@@ -379,6 +391,8 @@
             <path d="M4 19.5V5a2 2 0 0 1 2-2h14v18H6.5A2.5 2.5 0 0 1 4 19.5z"/>
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M8 7.5h7"/>
           </svg>
+          <img class="icon-img" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"
+               src="https://play-lh.googleusercontent.com/UIorrEqlNGwqZCgVagmTxjVl9wBsHgnMDmWL9BRP6dYkducB_PyZMJ43uvHdRgvlGey-VLL6C8fizrbrkaa3qos=s192">
         </div>
         <div class="app-body">
           <div class="app-title">
@@ -408,6 +422,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10.5h18"/><path d="M16.5 15.5h2.5"/>
           </svg>
+          <img class="icon-img" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"
+               src="https://play-lh.googleusercontent.com/bPmSx2H6mP-QHPXTEpQKt5b_Fqqrof7UnkYyRcjZNWxEw8HbxJ44Rs769lcTKGM6tM9HyMpq5TSddP3aJSuXLg=s192">
         </div>
         <div class="app-body">
           <div class="app-title">
@@ -438,6 +454,8 @@
             <path d="M4 15v-3a8 8 0 0 1 16 0v3"/>
             <rect x="2.5" y="14" width="4.5" height="6" rx="2"/><rect x="17" y="14" width="4.5" height="6" rx="2"/>
           </svg>
+          <img class="icon-img" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"
+               src="https://play-lh.googleusercontent.com/6AbbPWSSTUMgNTjuhc8piKp0D6HZOr8zrEuQ7oXRLM3qETqrsat27efatZhwCDKPSIqR27F_D2HAYtbS1J9V=s192">
         </div>
         <div class="app-body">
           <div class="app-title">
@@ -467,6 +485,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/>
           </svg>
+          <img class="icon-img" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"
+               src="https://play-lh.googleusercontent.com/bPdGFu07B_z7uUnmlsioSW0BWoWGLtygaa_5VTdh2X7RCyffRRgIVoGe5eO-apYU5zvgIpD5y9ddpyl7gtofiw=s192">
         </div>
         <div class="app-body">
           <div class="app-title">
@@ -495,6 +515,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 8v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8"/><rect x="2" y="4" width="20" height="4" rx="1"/><path d="M10 12h4"/>
           </svg>
+          <img class="icon-img" alt="" width="72" height="72" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"
+               src="https://play-lh.googleusercontent.com/lMZoW2Bzt9t_Nz6YQpv6TZkEkrWh1EecPtpGErqOAmVDkZSV5NvGZh0Z_Dl4O0gtOwQAnV7uo1bC7KUmdY63nw=s192">
         </div>
         <div class="app-body">
           <div class="app-title">
