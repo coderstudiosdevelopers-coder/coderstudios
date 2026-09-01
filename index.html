@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coder Studios — 매일 쓰는 앱을 만듭니다</title>
+
+<!-- ===== SEO / 공유 미리보기 ===== -->
+<meta name="description" content="Coder Studios는 심플메모, 모두의 신고, 심플 QR 등 매일 쓰는 Android 앱을 만듭니다. 복잡한 설정 없이 필요한 기능만 담았습니다.">
+<meta name="theme-color" content="#2563EB">
+<link rel="canonical" href="https://coderstudiosdevelopers-coder.github.io/coderstudios/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Coder Studios">
+<meta property="og:title" content="Coder Studios — 매일 쓰는 앱을 만듭니다">
+<meta property="og:description" content="복잡한 설정 없이, 필요한 기능만 담은 Android 앱을 만듭니다.">
+<meta property="og:url" content="https://coderstudiosdevelopers-coder.github.io/coderstudios/">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563EB'/><text x='16' y='23' font-size='19' font-family='system-ui,sans-serif' font-weight='800' fill='white' text-anchor='middle'>C</text></svg>">
+
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --ink:#0F172A;
+    --body:#475569;
+    --muted:#94A3B8;
+    --line:#E7EBF0;
+    --bg:#FFFFFF;
+    --bg-soft:#F7F9FC;
+    --blue:#2563EB;
+    --blue-dark:#1D4ED8;
+    --blue-soft:#EFF4FF;
+    --max:960px;
+  }
+
+  html{scroll-behavior:smooth}
+
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo",
+                "Segoe UI","Malgun Gothic",Roboto,sans-serif;
+    background:var(--bg);color:var(--body);
+    -webkit-font-smoothing:antialiased;line-height:1.6;
+    letter-spacing:-0.011em;
+  }
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  a{color:inherit}
+
+  :focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+  .skip{
+    position:absolute;left:-9999px;top:0;z-index:100;
+    background:var(--blue);color:#fff;padding:10px 16px;border-radius:0 0 8px 0;
+    font-size:14px;font-weight:600;text-decoration:none;
+  }
+  .skip:focus{left:0}
+
+  /* ---------- HEADER ---------- */
+  .top{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid transparent;transition:border-color .3s ease;
+  }
+  .top.stuck{border-bottom-color:var(--line)}
+  .top-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;
+         font-size:16px;color:var(--ink);text-decoration:none;letter-spacing:-0.02em}
+  .brand-mark{
+    width:28px;height:28px;border-radius:8px;
+    background:var(--blue);display:grid;place-items:center;
+    color:#fff;font-size:14px;font-weight:800;
+  }
+  .top-nav{display:flex;gap:26px;align-items:center}
+  .top-nav a{color:var(--body);text-decoration:none;font-size:14.5px;font-weight:500;
+             transition:color .2s}
+  .top-nav a:hover{color:var(--ink)}
+  @media(max-width:620px){.top-nav a:not(:last-child){display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:92px 0 78px;text-align:center;border-bottom:1px solid var(--line)}
+  .kicker{
+    display:inline-block;background:var(--blue-soft);color:var(--blue-dark);
+    font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;
+    margin-bottom:22px;
+  }
+  h1{
+    font-size:clamp(30px,5vw,44px);line-height:1.22;letter-spacing:-0.035em;
+    font-weight:800;color:var(--ink);margin-bottom:18px;
+  }
+  .hero p{font-size:17px;max-width:490px;margin:0 auto;color:var(--body)}
+  .hero-plat{
+    display:flex;justify-content:center;gap:10px;margin-top:30px;flex-wrap:wrap;
+  }
+  .plat{
+    display:inline-flex;align-items:center;gap:7px;
+    border:1px solid var(--line);background:var(--bg-soft);
+    padding:7px 14px;border-radius:999px;font-size:13px;
+    font-weight:600;color:var(--body);text-decoration:none;
+    transition:border-color .2s ease,background .2s ease;
+  }
+  a.plat:hover{border-color:#CBD8EA;background:#fff}
+  .plat svg{width:14px;height:14px}
+
+  /* ---------- SECTION ---------- */
+  section{padding:72px 0}
+  .sec-head{margin-bottom:34px}
+  .sec-head h2{font-size:24px;color:var(--ink);letter-spacing:-0.03em;font-weight:700;margin-bottom:8px}
+  .sec-head p{font-size:15.5px;color:#64748B}
+
+  /* ---------- APP CARD ---------- */
+  .apps{display:flex;flex-direction:column;gap:16px}
+  .app{
+    display:flex;gap:22px;align-items:flex-start;
+    border:1px solid var(--line);border-radius:16px;
+    padding:26px;background:var(--bg);
+    transition:border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+  }
+  .app:hover{
+    border-color:#CBD8EA;
+    box-shadow:0 6px 24px rgba(15,23,42,.07);
+    transform:translateY(-2px);
+  }
+  @media(max-width:600px){.app{flex-direction:column;gap:18px;padding:22px}}
+
+  .icon{
+    width:72px;height:72px;border-radius:17px;flex-shrink:0;
+    display:grid;place-items:center;
+    box-shadow:0 2px 8px rgba(15,23,42,.12), inset 0 1px 0 rgba(255,255,255,.28);
+  }
+  .icon svg{width:38px;height:38px}
+  .ic-memo   {background:linear-gradient(160deg,#3B82F6,#1D4ED8)}
+  .ic-report {background:linear-gradient(160deg,#F87171,#DC2626)}
+  .ic-qr     {background:linear-gradient(160deg,#64748B,#1E293B)}
+  .ic-pet    {background:linear-gradient(160deg,#FBBF24,#D97706)}
+  .ic-diary  {background:linear-gradient(160deg,#A78BFA,#6D28D9)}
+  .ic-cash   {background:linear-gradient(160deg,#34D399,#047857)}
+  .ic-read   {background:linear-gradient(160deg,#22D3EE,#0E7490)}
+  .ic-random {background:linear-gradient(160deg,#F472B6,#BE185D)}
+  .ic-stock  {background:linear-gradient(160deg,#2DD4BF,#0F766E)}
+
+  .app-body{flex:1;min-width:0}
+  .app-title{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:6px}
+  .app-title h3{font-size:18px;color:var(--ink);letter-spacing:-0.025em;font-weight:700}
+  .tag{
+    font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:5px;
+    background:var(--bg-soft);color:#64748B;border:1px solid var(--line);
+  }
+  .tag.new{background:var(--blue-soft);color:var(--blue-dark);border-color:#D6E3FF}
+  .app-body > p{font-size:15px;margin-bottom:16px}
+
+  .feat{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .feat span{
+    font-size:12.5px;color:var(--body);background:var(--bg-soft);
+    border:1px solid var(--line);padding:4px 10px;border-radius:6px;
+  }
+
+  .dl{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  .store{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:9px 15px;border-radius:9px;text-decoration:none;
+    font-size:13.5px;font-weight:600;
+    border:1px solid var(--line);color:var(--ink);background:var(--bg);
+    transition:background .2s ease,border-color .2s ease,transform .2s ease;
+  }
+  .store:hover{background:var(--bg-soft);border-color:#CBD8EA;transform:translateY(-1px)}
+  .store svg{width:16px;height:16px;flex-shrink:0}
+  .meta{font-size:12.5px;color:var(--muted)}
+
+  /* ---------- TRUST ---------- */
+  .trust{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  @media(max-width:720px){.trust-grid{grid-template-columns:1fr;gap:24px}}
+  .trust-item h4{font-size:15.5px;color:var(--ink);font-weight:700;margin-bottom:7px;
+                 display:flex;align-items:center;gap:8px;letter-spacing:-0.02em}
+  .check{
+    width:19px;height:19px;border-radius:50%;background:var(--blue-soft);
+    display:grid;place-items:center;color:var(--blue);font-size:11px;font-weight:800;flex-shrink:0;
+  }
+  .trust-item p{font-size:14.5px;color:var(--body);line-height:1.62}
+
+  /* ---------- CONTACT ---------- */
+  .contact{text-align:center}
+  .contact h2{font-size:24px;color:var(--ink);letter-spacing:-0.03em;margin-bottom:10px;font-weight:700}
+  .contact p{font-size:15.5px;margin-bottom:26px}
+  .btn-main{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--blue);color:#fff;text-decoration:none;
+    padding:13px 26px;border-radius:10px;font-size:15px;font-weight:600;
+    transition:background .2s ease,transform .2s ease,box-shadow .2s ease;
+  }
+  .btn-main:hover{background:var(--blue-dark);transform:translateY(-2px);
+                  box-shadow:0 8px 20px rgba(37,99,235,.28)}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line);padding:34px 0 44px;background:var(--bg-soft)}
+  .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap;align-content:flex-start}
+  .foot-links a{font-size:13.5px;color:var(--body);text-decoration:none;transition:color .2s}
+  .foot-links a:hover{color:var(--blue)}
+  .biz{font-size:12.5px;color:#64748B;line-height:1.8}
+
+  /* ---------- REVEAL ---------- */
+  .rv{opacity:0;transform:translateY(16px);
+      transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.3,1)}
+  .rv.on{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .rv{opacity:1!important;transform:none!important}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#apps">본문 바로가기</a>
+
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a href="#top" class="brand"><span class="brand-mark" aria-hidden="true">C</span>Coder Studios</a>
+    <nav class="top-nav" aria-label="주요 메뉴">
+      <a href="#apps">앱</a>
+      <a href="#about">소개</a>
+      <a href="#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="kicker">Android 앱 개발</span>
+    <h1>매일 쓰는 앱을,<br>가볍고 단순하게.</h1>
+    <p>복잡한 설정 없이, 필요한 기능만 담은 앱을 만듭니다. 지금까지 9개를 Google Play에 올렸습니다.</p>
+    <div class="hero-plat">
+      <a class="plat" href="https://play.google.com/store/apps/developer?id=coderstudios" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+          <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+          <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+          <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+        </svg>
+        Google Play 개발자 페이지
+      </a>
+    </div>
+  </div>
+</div>
+
+<main>
+<section id="apps">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>만든 앱</h2>
+      <p>버튼을 누르면 Google Play로 이동합니다.</p>
+    </div>
+
+    <div class="apps">
+
+      <!-- ===== 심플메모 ===== -->
+      <article class="app rv">
+        <div class="icon ic-memo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h5"/><path d="M13.5 16.5l1.7 1.7L19 14.5"/>
+          </svg>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <h3>심플메모</h3>
+            <span class="tag">메모 · 할 일</span>
+          </div>
+          <p>복잡한 설정 없이 메모와 할 일을 한곳에서 관리합니다. 기기에 등록된 구글·삼성 캘린더를 연동하면 일정까지 달력과 위젯에서 함께 볼 수 있습니다.</p>
+          <div class="feat"><span>메모 + 일정 통합</span><span>기기 캘린더 연동</span><span>홈 화면 위젯</span></div>
+          <div class="dl">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.coderstudios.simplememo" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+                <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+                <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+                <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+              </svg>
+              Google Play
+            </a>
+            <span class="meta">다운로드 1만+</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 모두의 신고 ===== -->
+      <article class="app rv">
+        <div class="icon ic-report" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11v2a1 1 0 0 0 1 1h2l6 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M19 6.5a8 8 0 0 1 0 11"/>
+          </svg>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <h3>모두의 신고</h3>
+            <span class="tag">공익 신고</span>
+          </div>
+          <p>쓰레기 무단투기, 불법 주정차 같은 생활 불편을 현장에서 바로 신고합니다. 카테고리만 고르면 상황에 맞는 신고 문구가 자동으로 채워집니다.</p>
+          <div class="feat"><span>신고 문구 자동 입력</span><span>사진·동영상 첨부</span><span>GPS 위치 자동 기록</span></div>
+          <div class="dl">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.coderstudios.easyreport" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+                <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+                <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+                <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+              </svg>
+              Google Play
+            </a>
+            <span class="meta">다운로드 1천+</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 심플 QR ===== -->
+      <article class="app rv">
+        <div class="icon ic-qr" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14v3M17 20h4"/>
+          </svg>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <h3>심플 QR</h3>
+            <span class="tag">유틸리티</span>
+          </div>
+          <p>앱을 켜자마자 바로 스캔합니다. 텍스트나 링크로 QR코드를 만들어 저장·공유할 수 있고, 스캔하거나 만든 기록을 다시 열어볼 수 있습니다.</p>
+          <div class="feat"><span>광고 없음</span><span>어두운 곳 플래시</span><span>스캔·생성 기록</span></div>
+          <div class="dl">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.coderstudios.simpleqr" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+                <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+                <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+                <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+              </svg>
+              Google Play
+            </a>
+            <span class="meta">다운로드 1천+</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 펫포올 ===== -->
+      <article class="app rv">
+        <div class="icon ic-pet" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6.5" cy="10" r="2"/><circle cx="10" cy="6" r="2"/><circle cx="14" cy="6" r="2"/><circle cx="17.5" cy="10" r="2"/>
+            <path d="M12 12.5c-3 0-5 2.2-5 4.4 0 2 1.6 3.1 5 3.1s5-1.1 5-3.1c0-2.2-2-4.4-5-4.4z"/>
+          </svg>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <h3>펫포올</h3>
+            <span class="tag">반려동물</span>
+          </div>
+          <p>체중·나이·활동 목표로 하루 필요 칼로리와 급여 그램수를 계산합니다. 알레르기 성분을 등록해 두면 그 성분이 든 사료와 간식은 걸러서 보여줍니다.</p>
+          <div class="feat"><span>급여량 자동 계산</span><span>건사료·화식 비율</span><span>알레르기 안전 필터</span><span>쿠팡 파트너스 제휴</span></div>
+          <div class="dl">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.devnori.petforall" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+                <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+                <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+                <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+              </svg>
+              Google Play
+            </a>
+            <span class="meta">다운로드 100+</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 메모라 ===== -->
+      <article class="app rv">
+        <div class="icon ic-diary" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5V5a2 2 0 0 1 2-2h14v18H6.5A2.5 2.5 0 0 1 4 19.5z"/>
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M8 7.5h7"/>
+          </svg>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <h3>메모라</h3>
+            <span class="tag">다이어리</span>
+          </div>
+          <p>글·사진·기분·손그림으로 하루를 짧게 남깁니다. 한 달의 기록이 한 장의 이미지 작품이 되고, 12월이 되면 1년의 기록이 짧은 영상으로 돌아옵니다.</p>
+          <div class="feat"><span>기분 캘린더</span><span>월간 작품 생성</span><span>연말 회고 영상</span></div>
+          <div class="dl">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.coderstudios.memora" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+                <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+                <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+                <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+              </svg>
+              Google Play
+            </a>
+            <span class="meta">다운로드 50+</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 쓱 가계부 ===== -->
+      <article class="app rv">
+        <div class="icon ic-cash" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10.5h18"/><path d="M16.5 15.5h2.5"/>
+          </svg>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <h3>쓱 가계부</h3>
+            <span class="tag">가계부</span>
+          </div>
+          <p>회원가입도 로그인도 없이 바로 기록합니다. 카테고리별 지출 비율, 예산과 잔액, 통장·카드·현금 자산 현황을 한 화면에서 확인할 수 있습니다.</p>
+          <div class="feat"><span>가입 없이 바로 사용</span><span>예산·자산 관리</span><span>무지출일 카운트</span><span>앱 잠금</span></div>
+          <div class="dl">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.coderstudios.cashmate" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+                <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+                <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+                <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+              </svg>
+              Google Play
+            </a>
+            <span class="meta">다운로드 50+</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 읽어주는 앱 ===== -->
+      <article class="app rv">
+        <div class="icon ic-read" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 15v-3a8 8 0 0 1 16 0v3"/>
+            <rect x="2.5" y="14" width="4.5" height="6" rx="2"/><rect x="17" y="14" width="4.5" height="6" rx="2"/>
+          </svg>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <h3>읽어주는 앱</h3>
+            <span class="tag">접근성 · 음성</span>
+          </div>
+          <p>붙여넣은 텍스트나 불러온 PDF를 음성으로 읽어줍니다. 눈이 피로할 때, 이동 중일 때, 읽는 대신 들을 수 있습니다.</p>
+          <div class="feat"><span>PDF 낭독</span><span>읽기 속도 조절</span><span>한국어 외 다국어</span></div>
+          <div class="dl">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.coderstudios.textreadingapp" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+                <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+                <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+                <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+              </svg>
+              Google Play
+            </a>
+            <span class="meta">다운로드 50+</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 랜덤픽 ===== -->
+      <article class="app rv">
+        <div class="icon ic-random" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/>
+          </svg>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <h3>랜덤픽</h3>
+            <span class="tag">생활</span>
+          </div>
+          <p>선택지를 입력하고 버튼 한 번이면 끝. 점심 메뉴, 오늘 볼 영화, 게임 벌칙까지 고민 대신 앱이 골라줍니다.</p>
+          <div class="feat"><span>목록 저장·수정</span><span>즉시 재추첨</span></div>
+          <div class="dl">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.kyungservice.randompick" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+                <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+                <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+                <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+              </svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ===== 스톡메이트 ===== -->
+      <article class="app rv">
+        <div class="icon ic-stock" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 8v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8"/><rect x="2" y="4" width="20" height="4" rx="1"/><path d="M10 12h4"/>
+          </svg>
+        </div>
+        <div class="app-body">
+          <div class="app-title">
+            <h3>스톡메이트</h3>
+            <span class="tag">재고 관리</span>
+            <span class="tag new">신규</span>
+          </div>
+          <p>쿠팡·네이버 스마트스토어·알리익스프레스 구매 이력을 불러와 생필품이 언제쯤 떨어질지 예측하고, 그 전에 알림으로 알려줍니다.</p>
+          <div class="feat"><span>쇼핑몰 연동</span><span>소진일 D-day</span><span>재구매 알림</span></div>
+          <div class="dl">
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.coderstudios.stockmate" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#00D2FF" d="M3.6 1.8c-.3.3-.5.8-.5 1.4v17.6c0 .6.2 1.1.5 1.4l.1.1 9.9-9.9v-.2L3.7 1.7z"/>
+                <path fill="#FFCE00" d="M17.1 15.7l-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.4c1.2.7 1.2 1.8 0 2.5z"/>
+                <path fill="#FF3A44" d="M17.2 15.7L13.6 12l-10 10c.4.4 1 .5 1.8.1z"/>
+                <path fill="#00F076" d="M17.2 8.3L5.4 1.8c-.8-.4-1.4-.4-1.8.1l10 10z"/>
+              </svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="trust" id="about">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Coder Studios가 앱을 만드는 방식</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-item rv">
+        <h4><span class="check" aria-hidden="true">✓</span> 계정 없이 바로 씁니다</h4>
+        <p>메모·가계부·다이어리에 적은 내용은 회원가입 없이 기기 안에 저장됩니다. 앱별 자세한 처리 내용은 각 앱의 개인정보처리방침에서 확인하실 수 있습니다.</p>
+      </div>
+      <div class="trust-item rv">
+        <h4><span class="check" aria-hidden="true">✓</span> 문의에 이틀 안에 답합니다</h4>
+        <p>영업일 기준 2일 이내에 답변드립니다. 자동응답이나 상담 봇을 쓰지 않고, 개발자가 직접 읽고 답합니다.</p>
+      </div>
+      <div class="trust-item rv">
+        <h4><span class="check" aria-hidden="true">✓</span> 만들고 끝내지 않습니다</h4>
+        <p>새 OS 버전이 나오면 대응하고, 스토어 리뷰와 메일로 받은 의견은 다음 업데이트에 반영합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap rv">
+    <h2>문의하기</h2>
+    <p>버그 제보, 기능 제안, 협업 제안 모두 환영합니다.</p>
+    <a class="btn-main" href="mailto:coderstudiosdevelopers@gmail.com">coderstudiosdevelopers@gmail.com →</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="biz">
+      Coder Studios · 문라이트<br>
+      경기도 안양시 동안구 시민대로327번길 11-41, 3704호(관양동)<br>
+      사업자등록번호 384-09-02568 · coderstudiosdevelopers@gmail.com<br>
+      © 2026 Coder Studios. All rights reserved.
+    </div>
+    <div class="foot-links">
+      <a href="./privacy.html">개인정보처리방침</a>
+      <a href="./terms.html">이용약관</a>
+      <a href="https://play.google.com/store/apps/developer?id=coderstudios" target="_blank" rel="noopener">Google Play</a>
+      <a href="#contact">고객지원</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var topEl = document.getElementById('top');
+  window.addEventListener('scroll', function () {
+    topEl.classList.toggle('stuck', window.scrollY > 8);
+  }, { passive: true });
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.rv');
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('on'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    items.forEach(function (el, i) {
+      el.style.transitionDelay = (i % 4 * 0.07) + 's';
+      io.observe(el);
+    });
+  }
+</script>
+
+</body>
+</html>
